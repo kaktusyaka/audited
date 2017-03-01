@@ -51,7 +51,7 @@ module Audited
 
         attr_accessor :audit_comment
 
-        has_many :audits, -> { order(version: :asc) }, as: :auditable, class_name: Audit.name
+        has_many :audits, -> { where("audited_changes NOT LIKE '%!ruby/object:PictureUploader%'").order(version: :asc) }, as: :auditable, class_name: Audit.name
         Audit.audited_class_names << to_s
 
         on = Array(options[:on])
@@ -75,7 +75,7 @@ module Audited
       end
 
       def has_associated_audits
-        has_many :associated_audits, as: :associated, class_name: Audit.name
+        has_many :associated_audits, -> { where("audited_changes NOT LIKE '%!ruby/object:PictureUploader%'") }, as: :associated, class_name: Audit.name
       end
 
       def default_ignored_attributes
