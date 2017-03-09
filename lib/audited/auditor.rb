@@ -203,20 +203,20 @@ module Audited
 
       def audit_create
         write_audit(action: 'create', audited_changes: audited_attributes,
-                    comment: audit_comment, effective_date: (Registry.effective_date || Time.now))
+                    comment: audit_comment, RequestStore.store[:effective_date])
       end
 
       def audit_update
         unless (changes = audited_changes).empty? && audit_comment.blank?
           write_audit(action: 'update', audited_changes: changes,
-                      comment: audit_comment, effective_date: (Registry.effective_date || Time.now))
+                      comment: audit_comment, RequestStore.store[:effective_date])
         end
       end
 
       def audit_destroy
         write_audit(action: 'destroy', audited_changes: audited_attributes,
                     comment: audit_comment, 
-                    effective_date: (Registry.effective_date || Time.now)) unless new_record?
+                    effective_date: RequestStore.store[:effective_date]) unless new_record?
       end
 
       def write_audit(attrs)
