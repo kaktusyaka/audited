@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'activerecord', '>= 4.0', '< 5.2'
-  gem.add_dependency 'rails-observers', '~> 0.1.5'
+  gem.add_dependency 'rails-observers', '~> 0.2.0'
 
   gem.add_development_dependency 'appraisal'
   gem.add_development_dependency 'rails', '>= 4.0', '< 5.2'
