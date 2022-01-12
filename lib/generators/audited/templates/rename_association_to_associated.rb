@@ -1,4 +1,6 @@
-class <%= migration_class_name %> < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class <%= migration_class_name %> < <%= migration_parent %>
   def self.up
     if index_exists? :audits, [:association_id, :association_type], :name => 'association_index'
       remove_index :audits, :name => 'association_index'

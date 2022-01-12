@@ -1,4 +1,6 @@
-class <%= migration_class_name %> < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class <%= migration_class_name %> < <%= migration_parent %>
   def self.up
     add_column :audits, :remote_address, :string
   end
