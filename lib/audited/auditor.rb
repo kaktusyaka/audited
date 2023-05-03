@@ -346,6 +346,13 @@ module Audited
         end
       end
 
+      def audit_touch
++        unless (changes = audited_changes(for_touch: true)).empty?
++          write_audit(action: "update", audited_changes: changes,
++            comment: audit_comment, effective_date: RequestStore.store[:effective_date])
+         end
+       end
+
       def write_audit(attrs)
         self.audit_comment = nil
 
