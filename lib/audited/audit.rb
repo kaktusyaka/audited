@@ -49,7 +49,7 @@ module Audited
     cattr_accessor :audited_class_names
     self.audited_class_names = Set.new
 
-    serialize :audited_changes, YAMLIfTextColumnType
+    serialize :audited_changes, coder: YAMLIfTextColumnType
 
     scope :ascending, -> { reorder(version: :asc) }
     scope :descending, -> { reorder(version: :desc) }
